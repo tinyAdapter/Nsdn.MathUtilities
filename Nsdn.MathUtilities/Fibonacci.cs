@@ -10,6 +10,26 @@ namespace Nsdn.MathUtilities
     public class Fibonacci
     {
         /// <summary>
+        /// 获取斐波那契数列指定项
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static BigInteger IndexOf(int index)
+        {
+            if (index == 1 || index == 2)
+                return BigInteger.One;
+
+            BigInteger now, lastOne = BigInteger.One, lastTwo = BigInteger.One;
+
+            for (int i = 3; i <= index; i++)
+            {
+                now = BigInteger.Add(lastOne, lastTwo);
+                lastTwo = lastOne;
+                lastOne = now;
+            }
+            return now;
+        }
+        /// <summary>
         /// 打印斐波那契数列，在某位置停止
         /// </summary>
         /// <param name="stopAt">停止打印项数</param>
@@ -83,10 +103,9 @@ namespace Nsdn.MathUtilities
 
                 return;
             }
-            catch (StopBeforeStartException e)
+            catch (StopBeforeStartException)
             {
-                Console.WriteLine("ERROR: STOP BEFORE START\n" + e.ToString());
-                return;
+                throw;
             }
         }
 
@@ -164,9 +183,9 @@ namespace Nsdn.MathUtilities
 
                 return s;
             }
-            catch (StopBeforeStartException e)
+            catch (StopBeforeStartException)
             {
-                return "ERROR: STOP BEFORE START\n" + e.ToString();
+                throw;
             }
         }
     }

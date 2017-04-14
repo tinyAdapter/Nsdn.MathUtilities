@@ -2,11 +2,17 @@ using System;
 using Xunit;
 using Nsdn.MathUtilities;
 using System.IO;
+using System.Numerics;
 
 namespace Nsdn.MathUtilities.XUnitTest
 {
-    public class UnitTest
+    public class FibonacciUnitTest
     {
+        [Fact]
+        public void FibonacciIndexOfTest()
+        {
+            Assert.Equal(BigInteger.Parse("5"), Fibonacci.IndexOf(5));
+        }
         [Fact]
         public void FibonacciGetTableTest1()
         {
